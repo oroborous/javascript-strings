@@ -42,6 +42,14 @@ $(document).ready(function () {
         }
     }
 
+    function parseInstructions(instr) {
+        // encode HTML
+        instr = instr.replace(/(?:<)/g, "&lt;");
+        instr = instr.replace(/(?:>)/g, "&gt;");
+        // replace newlines with <br>
+        return instr.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    }
+
     function loadProblem(index) {
         currentProblem = index;
         updateLastProblem();
@@ -50,11 +58,11 @@ $(document).ready(function () {
         let problem = problems[currentProblem];
 
         $("#problemName").text(problem.name);
-        $("#instructions").html(problem.instr.replace(/(?:\r\n|\r|\n)/g, "<br>"));
+        $("#instructions").html(parseInstructions(problem.instr));
         $("#tests").empty();
 
         let answer = loadAnswer(problem.name);
-        answer = answer || `function ${problem.func.name} (${problem.func.args.join(", ")}) {\n\t\n}`;
+        answer = answer || `function ${problem.func.name} (${problem.func.args.join(", ")}) {\n  \n}`;
         editor.doc.setValue(answer);
     }
 
@@ -124,19 +132,27 @@ $(document).ready(function () {
 
     function createTableRow(funcName, test, result, correct) {
         let tr = $("<tr>");
-        tr.append($("<td>").text(`${funcName}(${printableArgs(test.args)});`));
-        tr.append($("<td>").text(test.ans));
+        tr.append($("<td>").text(`${funcName}(${quotedArgs(test.args)});`));
+        tr.append($("<td>").text(quotedAnswer(test.ans)));
         tr.append($("<td>").text(result));
         tr.append($("<td>").text(correct ? "OK" : "X"));
         tr.append($("<td>&nbsp;</td>").css("background-color", correct ? "darkgreen" : "crimson"));
         return tr;
     }
 
-    function printableArgs(args) {
+    function quotedAnswer(ans) {
+        if (typeof ans === "string")
+            return `"${ans}"`;
+        return ans;
+    }
+
+    function quotedArgs(args) {
         let newArgs = [];
         args.forEach(function (item, index) {
             if (typeof item === "string")
                 newArgs.push(`"${item}"`);
+            else
+                newArgs.push(item);
         });
         return newArgs.join(", ");
     }

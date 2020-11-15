@@ -15,3 +15,7 @@ body {
 .spacer {
     margin-top: 20px;
 }
+
+td a:hover {
+    cursor: pointer;
+}
