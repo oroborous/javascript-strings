@@ -112,7 +112,7 @@ firstTwo("ab") → "ab"`,
             {args: [""], ans: ""},
             {args: ["Kitten"], ans: "Ki"},
             {args: ["hi"], ans: "hi"},
-            {args: ["hiya"], ans: "hiya"}
+            {args: ["hiya"], ans: "hi"}
         ]
     },
     {
