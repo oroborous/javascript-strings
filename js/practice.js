@@ -78,6 +78,9 @@ $(document).ready(function () {
             let result, correct;
             try {
                 let func = createFunction(problem.func.args);
+                // save now, in case it crashes when trying
+                // to run the function
+                saveAnswer(problem.name);
                 result = func(...item.args);
                 correct = result === item.ans;
             } catch (err) {
@@ -89,7 +92,7 @@ $(document).ready(function () {
             }
         });
 
-        saveAnswer(problem.name);
+
 
         if (completed)
             problemComplete(problem.name);
