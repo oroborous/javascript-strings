@@ -136,14 +136,14 @@ $(document).ready(function () {
     function createTableRow(funcName, test, result, correct) {
         let tr = $("<tr>");
         tr.append($("<td>").text(`${funcName}(${quotedArgs(test.args)});`));
-        tr.append($("<td>").text(quotedAnswer(test.ans)));
-        tr.append($("<td>").text(result));
+        tr.append($("<td>").text(quotedString(test.ans)));
+        tr.append($("<td>").text(quotedString(result)));
         tr.append($("<td>").text(correct ? "OK" : "X"));
         tr.append($("<td>&nbsp;</td>").css("background-color", correct ? "darkgreen" : "crimson"));
         return tr;
     }
 
-    function quotedAnswer(ans) {
+    function quotedString(ans) {
         if (typeof ans === "string")
             return `"${ans}"`;
         return ans;
