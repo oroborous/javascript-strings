@@ -1,4 +1,4 @@
-var problems = [
+let stringProblems = [
     {
         name: "helloName",
         instr: `Given a string name, e.g. "Bob", return a greeting of the form "Hello Bob!".
@@ -292,7 +292,7 @@ endsLy("oddy") → false`,
             {args: ["evenly"], ans: true}
         ]
     },
-    // begin single loop problems
+    // begin single loop stringProblems
     {
         name: "doubleChar",
         instr: `Given a string, return a string where for every character in the original, there are two characters.

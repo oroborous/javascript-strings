@@ -3,13 +3,28 @@ $(document).ready(function () {
     populateTable();
 
     function populateTable() {
-        let completed = JSON.parse(window.localStorage.getItem("completed"));
+        let currentProblemSet = window.localStorage.getItem(PROBLEM_SET) || "Function";
+        let problemSet = [];
+
+        $("title").text(currentProblemSet);
+        $("h1").text(currentProblemSet + " Practice: Progress");
+
+        switch (currentProblemSet) {
+            case "String":
+                problemSet = stringProblems;
+                break;
+            case "Function":
+                problemSet = functionProblems;
+                break;
+        }
+
+        let completed = JSON.parse(window.localStorage.getItem(COMPLETED + currentProblemSet));
         if (!completed)
             completed = [];
 
         let tbody = $("tbody").empty();
 
-        problems.forEach(function (item, index) {
+        problemSet.forEach(function (item, index) {
             let isCompleted = completed.indexOf(item.name) !== -1;
             let tr = $("<tr>");
             tr.append($("<td>").append($("<a>").text(item.name).click(function () {
@@ -22,7 +37,7 @@ $(document).ready(function () {
     }
 
     function viewProblem(index) {
-        window.localStorage.setItem("lastProblem", index);
+        window.localStorage.setItem(PROBLEM, index);
         document.location = "index.html";
     }
 });

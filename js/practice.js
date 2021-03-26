@@ -1,33 +1,59 @@
 let currentProblem = 0;
+let currentProblemSet;
+let problemSet = [];
 
 $(document).ready(function () {
-    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+    let editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
         lineNumbers: true,
         mode: "javascript"
     });
 
     $("#testButton").click(testSolution);
     $("#nextButton").click(function () {
-        loadProblem(Math.min(currentProblem + 1, problems.length));
+        loadProblem(Math.min(currentProblem + 1, problemSet.length));
     });
     $("#backButton").click(function () {
         loadProblem(Math.max(currentProblem - 1, 0));
-    })
+    });
+    $("#problemSet").change(function() {
+        loadProblemSet(this.value);
+    });
+
+    loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || $("#problemSet").val());
 
     readStorage();
-    loadProblem(currentProblem);
+
+    function loadProblemSet(problemSetName) {
+        currentProblemSet = problemSetName;
+        window.localStorage.setItem(PROBLEM_SET, problemSetName);
+
+        switch (problemSetName) {
+            case "String":
+                problemSet = stringProblems;
+                break;
+            case "Function":
+                problemSet = functionProblems;
+                break;
+        }
+
+        $("title").text(problemSetName + " Practice");
+        $("h1").text(problemSetName + " Practice");
+
+        currentProblem = 0;
+        loadProblem(currentProblem)
+    }
 
     function readStorage() {
-        let lastProblem = window.localStorage.getItem("lastProblem");
+        let lastProblem = window.localStorage.getItem(PROBLEM);
         currentProblem = lastProblem ? parseInt(lastProblem) : 0;
 
-        if (!window.localStorage.getItem("completed")) {
-            window.localStorage.setItem("completed", JSON.stringify([]));
+        if (!window.localStorage.getItem(COMPLETED + currentProblemSet)) {
+            window.localStorage.setItem(COMPLETED + currentProblemSet, JSON.stringify([]));
         }
     }
 
     function updateLastProblem() {
-        window.localStorage.setItem("lastProblem", currentProblem);
+        window.localStorage.setItem(PROBLEM, currentProblem);
     }
 
     function enableButtons() {
@@ -37,7 +63,7 @@ $(document).ready(function () {
         if (currentProblem === 0) {
             back.attr("disabled", "disabled");
         }
-        if (currentProblem === problems.length - 1) {
+        if (currentProblem === problemSet.length - 1) {
             next.attr("disabled", "disabled");
         }
     }
@@ -55,7 +81,7 @@ $(document).ready(function () {
         updateLastProblem();
         enableButtons();
 
-        let problem = problems[currentProblem];
+        let problem = problemSet[currentProblem];
 
         $("#problemName").text(problem.name);
         $("#instructions").html(parseInstructions(problem.instr));
@@ -70,7 +96,7 @@ $(document).ready(function () {
         let code = editor.doc.getValue();
         console.log(code);
 
-        let problem = problems[currentProblem];
+        let problem = problemSet[currentProblem];
         let tbody = $("tbody").empty();
         let completed = true;
 
@@ -93,20 +119,19 @@ $(document).ready(function () {
         });
 
 
-
         if (completed)
             problemComplete(problem.name);
     }
 
     function saveAnswer(name) {
-        let answers = window.localStorage.getItem("answers");
+        let answers = window.localStorage.getItem(ANSWERS + currentProblemSet);
         answers = answers ? JSON.parse(answers) : {};
         answers[name] = editor.doc.getValue();
-        window.localStorage.setItem("answers", JSON.stringify(answers));
+        window.localStorage.setItem(ANSWERS + currentProblemSet, JSON.stringify(answers));
     }
 
     function loadAnswer(name) {
-        let answers = window.localStorage.getItem("answers");
+        let answers = window.localStorage.getItem(ANSWERS + currentProblemSet);
         if (answers) {
             answers = JSON.parse(answers);
             if (answers[name]) {
@@ -118,11 +143,11 @@ $(document).ready(function () {
     }
 
     function problemComplete(name) {
-        let problems = window.localStorage.getItem("completed");
-        problems = problems ? JSON.parse(problems) : [];
-        if (problems.indexOf(name) === -1)
-            problems.push(name);
-        window.localStorage.setItem("completed", JSON.stringify(problems));
+        let completedProblems = window.localStorage.getItem(COMPLETED + currentProblemSet);
+        completedProblems = completedProblems ? JSON.parse(completedProblems) : [];
+        if (completedProblems.indexOf(name) === -1)
+            completedProblems.push(name);
+        window.localStorage.setItem(COMPLETED + currentProblemSet, JSON.stringify(completedProblems));
     }
 
     function createFunction(functionArgs) {
