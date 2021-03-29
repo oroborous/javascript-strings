@@ -16,10 +16,15 @@ $(document).ready(function () {
         loadProblem(Math.max(currentProblem - 1, 0));
     });
 
-    loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || $("#problemSet").val());
+    let selectBox = $("#problemSet");
 
-    $("#problemSet").val(currentProblemSet).change(function() {
+    loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || selectBox.val());
+
+    selectBox.val(currentProblemSet);
+    selectBox.change(function() {
         loadProblemSet(this.value);
+        loadLastProblem();
+        loadProblem(currentProblem);
     });
 
     loadLastProblem();
@@ -44,7 +49,7 @@ $(document).ready(function () {
     }
 
     function loadLastProblem() {
-        let lastProblem = window.localStorage.getItem(PROBLEM);
+        let lastProblem = window.localStorage.getItem(PROBLEM + currentProblemSet);
         currentProblem = lastProblem ? parseInt(lastProblem) : 0;
 
         if (!window.localStorage.getItem(COMPLETED + currentProblemSet)) {
@@ -53,7 +58,7 @@ $(document).ready(function () {
     }
 
     function updateLastProblem() {
-        window.localStorage.setItem(PROBLEM, currentProblem);
+        window.localStorage.setItem(PROBLEM + currentProblemSet, currentProblem);
     }
 
     function enableButtons() {
