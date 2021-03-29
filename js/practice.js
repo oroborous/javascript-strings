@@ -21,7 +21,7 @@ $(document).ready(function () {
     loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || selectBox.val());
 
     selectBox.val(currentProblemSet);
-    selectBox.change(function() {
+    selectBox.on("change", function() {
         loadProblemSet(this.value);
         loadLastProblem();
         loadProblem(currentProblem);
