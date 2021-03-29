@@ -27,9 +27,12 @@ $(document).ready(function () {
         problemSet.forEach(function (item, index) {
             let isCompleted = completed.indexOf(item.name) !== -1;
             let tr = $("<tr>");
-            tr.append($("<td>").append($("<a>").text(item.name).click(function () {
-                viewProblem(index);
-            })));
+            tr.append($("<td>").append($("<span>")
+                .text(item.name)
+                .addClass("problem-link")
+                .click(function () {
+                    viewProblem(index);
+                })));
             tr.append($("<td>").text(isCompleted ? "Complete" : "Incomplete"));
             tr.append($("<td>").css("background-color", isCompleted ? "darkgreen" : "crimson"));
             tbody.append(tr);

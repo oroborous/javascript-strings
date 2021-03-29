@@ -16,6 +16,10 @@ body {
     margin-top: 20px;
 }
 
-td a:hover {
+span.problem-link:hover {
     cursor: pointer;
+}
+
+span.problem-link {
+    text-decoration: darkgray underline;
 }

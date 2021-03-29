@@ -15,13 +15,16 @@ $(document).ready(function () {
     $("#backButton").click(function () {
         loadProblem(Math.max(currentProblem - 1, 0));
     });
-    $("#problemSet").change(function() {
-        loadProblemSet(this.value);
-    });
 
     loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || $("#problemSet").val());
 
-    readStorage();
+    $("#problemSet").val(currentProblemSet).change(function() {
+        loadProblemSet(this.value);
+    });
+
+    loadLastProblem();
+
+    loadProblem(currentProblem);
 
     function loadProblemSet(problemSetName) {
         currentProblemSet = problemSetName;
@@ -38,12 +41,9 @@ $(document).ready(function () {
 
         $("title").text(problemSetName + " Practice");
         $("h1").text(problemSetName + " Practice");
-
-        currentProblem = 0;
-        loadProblem(currentProblem)
     }
 
-    function readStorage() {
+    function loadLastProblem() {
         let lastProblem = window.localStorage.getItem(PROBLEM);
         currentProblem = lastProblem ? parseInt(lastProblem) : 0;
 
