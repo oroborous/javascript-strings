@@ -8,11 +8,11 @@ $(document).ready(function () {
         mode: "javascript"
     });
 
-    $("#testButton").click(testSolution);
-    $("#nextButton").click(function () {
+    $("#testButton").on("click", testSolution);
+    $("#nextButton").on("click", function () {
         loadProblem(Math.min(currentProblem + 1, problemSet.length));
     });
-    $("#backButton").click(function () {
+    $("#backButton").on("click", function () {
         loadProblem(Math.max(currentProblem - 1, 0));
     });
 

@@ -30,7 +30,7 @@ $(document).ready(function () {
             tr.append($("<td>").append($("<span>")
                 .text(item.name)
                 .addClass("problem-link")
-                .click(function () {
+                .on("click", function () {
                     viewProblem(index);
                 })));
             tr.append($("<td>").text(isCompleted ? "Complete" : "Incomplete"));
