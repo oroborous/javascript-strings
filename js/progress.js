@@ -31,7 +31,7 @@ $(document).ready(function () {
                 .text(item.name)
                 .addClass("problem-link")
                 .on("click", function () {
-                    viewProblem(index);
+                    viewProblem(currentProblemSet, index);
                 })));
             tr.append($("<td>").text(isCompleted ? "Complete" : "Incomplete"));
             tr.append($("<td>").css("background-color", isCompleted ? "darkgreen" : "crimson"));
@@ -39,8 +39,8 @@ $(document).ready(function () {
         });
     }
 
-    function viewProblem(index) {
-        window.localStorage.setItem(PROBLEM, index);
+    function viewProblem(currentProblemSet, index) {
+        window.localStorage.setItem(PROBLEM + currentProblemSet, index);
         document.location = "index.html";
     }
 });
