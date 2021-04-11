@@ -42,6 +42,9 @@ $(document).ready(function () {
             case "Function":
                 problemSet = functionProblems;
                 break;
+            case "Conditional":
+                problemSet = conditionalProblems;
+                break;
         }
 
         $("title").text(problemSetName + " Practice");

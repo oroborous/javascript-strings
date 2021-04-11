@@ -16,6 +16,9 @@ $(document).ready(function () {
             case "Function":
                 problemSet = functionProblems;
                 break;
+            case "Conditional":
+                problemSet = conditionalProblems;
+                break;
         }
 
         let completed = JSON.parse(window.localStorage.getItem(COMPLETED + currentProblemSet));
