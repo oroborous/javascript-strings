@@ -42,6 +42,55 @@ sortaSum(10, 11) → 21`,
         ]
     },
     {
+        name: "teenSum",
+        instr: `Given 2 integers, a and b, return their sum. However, "teen" values in the range 13..19 inclusive, are extra lucky. So if either value is a teen, just return 19.
+
+teenSum(3, 4) → 7
+teenSum(10, 13) → 19
+teenSum(13, 2) → 19`,
+        func: {
+            name: "teenSum",
+            args: ["a", "b"]
+        },
+        tests: [
+            {args: [3, 4], ans: 7},
+            {args: [10, 13], ans: 19},
+            {args: [13, 2], ans: 19},
+            {args: [3, 19], ans: 19},
+            {args: [10, 10], ans: 20},
+            {args: [6, 14], ans: 19},
+            {args: [15, 2], ans: 19},
+            {args: [19, 19], ans: 19},
+            {args: [19, 20], ans: 19},
+            {args: [2, 18], ans: 19 },
+            {args: [12, 4], ans: 16},
+            {args: [2, 20], ans: 22},
+            {args: [2, 17], ans: 19},
+            {args: [2, 16], ans: 19},
+            {args: [6, 7], ans: 13}
+        ]
+    },
+    {
+        name: "answerCell",
+        instr: `Your cell phone rings. Return true if you should answer it. Normally you answer, except in the morning you only answer if it is your mom calling. In all cases, if you are asleep, you do not answer.
+
+answerCell(false, false, false) → true
+answerCell(false, false, true) → false
+answerCell(true, false, false) → false`,
+        func: {
+            name: "answerCell",
+            args: ["isMorning", "isMom", "isAsleep"]
+        },
+        tests: [
+            {args: [false, false, false], ans: true},
+            {args: [false, false, true], ans: false},
+            {args: [true, false, false], ans: false},
+            {args: [true, true, false], ans: true},
+            {args: [false, true, false], ans: true},
+            {args: [true, true, true], ans: false}
+        ]
+    },
+    {
         name: "love6",
         instr: `The number 6 is a truly great number. Given two integers, a and b, return true if either one is 6. Or if their sum or difference is 6. Note: the function Math.abs(num) computes the absolute value of a number.
 
@@ -142,6 +191,170 @@ more20(22) → false`,
             {args: [41], ans: true},
             {args: [39], ans: false},
             {args: [42], ans: true}
+        ]
+    },
+    {
+        name: "fizzString",
+        instr: `Given a string str, if the string starts with "f" return "Fizz". If the string ends with "b" return "Buzz". If both the "f" and "b" conditions are true, return "FizzBuzz". In all other cases, return the string unchanged.
+
+fizzString("fig") → "Fizz"
+fizzString("dib") → "Buzz"
+fizzString("fib") → "FizzBuzz"
+fizzString("xxxx") → "xxxx"`,
+        func: {
+            name: "fizzString",
+            args: ["str"]
+        },
+        tests: [
+            {args: ["fig"], ans: "Fizz"},
+            {args: ["dib"], ans: "Buzz"},
+            {args: ["fib"], ans: "FizzBuzz"},
+            {args: ["abc"], ans: "abc"},
+            {args: ["fooo"], ans: "Fizz"},
+            {args: ["booo"], ans: "booo"},
+            {args: ["ooob"], ans: "Buzz"},
+            {args: ["fooob"], ans: "FizzBuzz"},
+            {args: ["f"], ans: "Fizz"},
+            {args: ["b"], ans: "Buzz"},
+            {args: ["abcb"], ans: "Buzz"},
+            {args: ["Hello"], ans: "Hello"},
+            {args: ["Hellob"], ans: "Buzz"},
+            {args: ["af"], ans: "af"},
+            {args: ["bf"], ans: "bf"},
+            {args: ["fb"], ans: "FizzBuzz"}
+        ]
+    },
+    {
+        name: "twoAsOne",
+        instr: `Given three integers, a b c, return true if it is possible to add two of the ints to get the third.
+
+twoAsOne(1, 2, 3) → true
+twoAsOne(3, 1, 2) → true
+twoAsOne(3, 2, 2) → false`,
+        func: {
+            name: "twoAsOne",
+            args: ["a", "b", "c"]
+        },
+        tests: [
+            {args: [1,2,3], ans: true},
+            {args: [3,1,2], ans: true},
+            {args: [3,2,2], ans: false},
+            {args: [2,3,1], ans: true},
+            {args: [5,3,-2], ans: true},
+            {args: [5,3,-3], ans: false},
+            {args: [2,5,3], ans: true},
+            {args: [9,5,5], ans: false},
+            {args: [9,4,5], ans: true},
+            {args: [5,4,9], ans: true},
+            {args: [3,3,0], ans: true},
+            {args: [3,3,2], ans: false}
+        ]
+    },
+    {
+        name: "lastDigit",
+        instr: `Given three integers, a b c, return true if two or more of them have the same rightmost digit. The ints are non-negative. Note: the % "mod" operator computes the remainder, e.g. 17 % 10 is 7.
+
+lastDigit(23, 19, 13) → true
+lastDigit(23, 19, 12) → false
+lastDigit(23, 19, 3) → true`,
+        func: {
+            name: "lastDigit",
+            args: ["a", "b", "c"]
+        },
+        tests: [
+            {args: [23,19,13], ans: true},
+            {args: [23,19,12], ans: false},
+            {args: [23,19,3], ans: true},
+            {args: [23,19,39], ans: true},
+            {args: [1,2,3], ans: false},
+            {args: [1,1,2], ans: true},
+            {args: [14,25,43], ans: false},
+            {args: [14,25,45], ans: true},
+            {args: [248,106,1002], ans: false},
+            {args: [248,106,1008], ans: true},
+            {args: [10,11,20], ans: true},
+            {args: [0,11,0], ans: true}
+        ]
+    },
+    {
+        name: "lessBy10",
+        instr: `Given three integers, a b c, return true if one of them is 10 or more less than one of the others.
+
+lessBy10(1, 7, 11) → true
+lessBy10(1, 7, 10) → false
+lessBy10(11, 1, 7) → true`,
+        func: {
+            name: "lessBy10",
+            args: ["a", "b", "c"]
+        },
+        tests: [
+            {args: [1,7,11], ans: true},
+            {args: [1,7,10], ans: false},
+            {args: [11,1,7], ans: true},
+            {args: [10,7,1], ans: false},
+            {args: [-10,2,2], ans: true},
+            {args: [2,11,11], ans: false},
+            {args: [3,3,30], ans: true},
+            {args: [3,3,3], ans: false},
+            {args: [10,1,11], ans: true},
+            {args: [10,11,1], ans: true},
+            {args: [10,11,2], ans: false},
+            {args: [3,30,3], ans: true},
+            {args: [2,2,-8], ans: true},
+            {args: [2,8,12], ans: true}
+        ]
+    },
+    {
+        name: "withoutDoubles",
+        instr: `Given two 6-sided dice rolls, each in the range 1..6, return the sum. However, if noDoubles is true, if the two dice show the same value, increment one die to the next value, wrapping around to 1 if its value was 6.
+
+withoutDoubles(2, 3, true) → 5
+withoutDoubles(3, 3, true) → 7
+withoutDoubles(3, 3, false) → 6
+withoutDoubles(6, 6, true) → 7`,
+        func: {
+            name: "withoutDoubles",
+            args: ["die1", "die2", "noDoubles"]
+        },
+        tests: [
+            {args: [2,3,true], ans: 5},
+            {args: [3,3,true], ans: 7},
+            {args: [3,3,false], ans: 6},
+            {args: [2,3,false], ans: 5},
+            {args: [5,4,true], ans: 9},
+            {args: [5,4,false], ans: 9},
+            {args: [5,5,true], ans: 11},
+            {args: [5,5,false], ans: 10},
+            {args: [6,6,true], ans: 7},
+            {args: [6,6,false], ans: 12},
+            {args: [1,6,true], ans: 7},
+            {args: [6,1,false], ans: 7}
+        ]
+    },
+    {
+        name: "maxMod5",
+        instr: `Given two integer values, return whichever value is larger. However if the two values have the same remainder when divided by 5, then the return the smaller value. However, in all cases, if the two values are the same, return 0. Note: the % "mod" operator computes the remainder, e.g. 7 % 5 is 2.
+
+maxMod5(2, 3) → 3
+maxMod5(6, 2) → 6
+maxMod5(3, 2) → 3`,
+        func: {
+            name: "maxMod5",
+            args: ["a", "b"]
+        },
+        tests: [
+            {args: [2,3], ans: 3},
+            {args: [6,2], ans: 6},
+            {args: [3,2], ans: 3},
+            {args: [8,12], ans: 12},
+            {args: [7,12], ans: 7},
+            {args: [11,6], ans: 6},
+            {args: [2,7], ans: 2},
+            {args: [7,7], ans: 0},
+            {args: [9,1], ans: 9},
+            {args: [9,14], ans: 9},
+            {args: [1,2], ans: 2},
+            {args: [6,6], ans: 0}
         ]
     }
 ];
