@@ -18,7 +18,9 @@ $(document).ready(function () {
 
     let selectBox = $("#problemSet");
 
-    loadProblemSet(window.localStorage.getItem(PROBLEM_SET) || selectBox.val());
+    const params = new URLSearchParams(window.location.search);
+
+    loadProblemSet(params.get("problems") || window.localStorage.getItem(PROBLEM_SET) || selectBox.val());
 
     selectBox.val(currentProblemSet);
     selectBox.on("change", function() {
