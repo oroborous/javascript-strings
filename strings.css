@@ -5,6 +5,7 @@ button {
 
 body {
     margin-top: 20px;
+    background-image: url("double-bubble-outline.png");
 }
 
 .CodeMirror {
