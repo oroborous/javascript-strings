@@ -305,6 +305,56 @@ lessBy10(11, 1, 7) → true`,
         ]
     },
     {
+        name: "alarmClock",
+        instr: `Given two 6-sided dice rolls, each in the range 1..6, return the sum. However, if noDoubles is true, if the two dice show the same value, increment one die to the next value, wrapping around to 1 if its value was 6.
+
+alarmClock(1, false) → "7:00"
+alarmClock(0, true) → "off"
+alarmClock(0, false) → "10:00"`,
+        func: {
+            name: "alarmClock",
+            args: ["day", "vacation"]
+        },
+        tests: [
+            {args: [1, false], ans: "7:00"},
+            {args: [5, false], ans: "7:00"},
+            {args: [0, false], ans: "10:00"},
+            {args: [6, false], ans: "10:00"},
+            {args: [0, true], ans: "off"},
+            {args: [6, true], ans: "off"},
+            {args: [1, true], ans: "10:00"},
+            {args: [3, true], ans: "10:00"},
+            {args: [5, true], ans: "10:00"}
+        ]
+    },
+    {
+        name: "teaParty",
+        instr: `We are having a party with amounts of tea and candy. Return the int outcome of the party encoded as 0=bad, 1=good, or 2=great. A party is good (1) if both tea and candy are at least 5. However, if either tea or candy is at least double the amount of the other one, the party is great (2). However, in all cases, if either tea or candy is less than 5, the party is always bad (0).
+
+teaParty(6, 8) → 1
+teaParty(3, 8) → 0
+teaParty(20, 6) → 2`,
+        func: {
+            name: "teaParty",
+            args: ["tea", "candy"]
+        },
+        tests: [
+            {args: [6,8], ans: 1},
+            {args: [3,8], ans: 0},
+            {args: [20,6], ans: 2},
+            {args: [12,6], ans: 2},
+            {args: [11,6], ans: 1},
+            {args: [11,4], ans: 0},
+            {args: [4,5], ans: 0},
+            {args: [5,5], ans: 1},
+            {args: [6,6], ans: 1},
+            {args: [5,10], ans: 2},
+            {args: [5,9], ans: 1},
+            {args: [10,4], ans: 0},
+            {args: [10,20], ans: 2}
+        ]
+    },
+    {
         name: "withoutDoubles",
         instr: `Given two 6-sided dice rolls, each in the range 1..6, return the sum. However, if noDoubles is true, if the two dice show the same value, increment one die to the next value, wrapping around to 1 if its value was 6.
 
