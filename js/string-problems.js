@@ -415,4 +415,30 @@ mixString("xxxx", "There") → "xTxhxexre"`,
             {args: ["So", "Long"], ans: "SLoong"}
         ]
     },
+    {
+        name: "getSandwich",
+        instr: `A sandwich is two pieces of bread with something in between. Return the string that is between the first and last appearance of "bread" in the given string, or return the empty string "" if there are not two pieces of bread.
+
+getSandwich("breadjambread") → "jam"
+getSandwich("xxbreadjambreadyy") → "jam"
+getSandwich("xxbreadyy") → ""`,
+        func: {
+            name: "getSandwich",
+            args: ["str"]
+        },
+        tests: [
+            {args: ["breadjambread"], ans: "jam"},
+            {args: ["xxbreadjambreadyy"], ans: "jam"},
+            {args: ["xxbreadyy"], ans: ""},
+            {args: ["xxbreadbreadjambreadyy"], ans: "breadjam"},
+            {args: ["breadAbread"], ans: "A"},
+            {args: ["breadbread"], ans: ""},
+            {args: ["abcbreaz"], ans: ""},
+            {args: ["xyz"], ans: ""},
+            {args: [""], ans: ""},
+            {args: ["breadbreaxbread"], ans: "breax"},
+            {args: ["breaxbreadybread"], ans: "y"},
+            {args: ["breadbreadbreadbread"], ans: "breadbread"}
+        ]
+    }
 ];
