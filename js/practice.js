@@ -47,6 +47,9 @@ $(document).ready(function () {
             case "Conditional":
                 problemSet = conditionalProblems;
                 break;
+            case "Array":
+                problemSet = arrayProblems;
+                break;
         }
 
         $("title").text(problemSetName + " Practice");
@@ -118,7 +121,7 @@ $(document).ready(function () {
                 // to run the function
                 saveAnswer(problem.name);
                 result = func(...item.args);
-                correct = result === item.ans;
+                correct = _.isEqual(result, item.ans);
             } catch (err) {
                 result = err;
                 correct = false;
@@ -181,6 +184,8 @@ $(document).ready(function () {
     function quotedString(ans) {
         if (typeof ans === "string")
             return `"${ans}"`;
+        else if (ans instanceof Array)
+            return `[ ${ans.join(", ")} ]`;
         return ans;
     }
 
@@ -189,6 +194,8 @@ $(document).ready(function () {
         args.forEach(function (item, index) {
             if (typeof item === "string")
                 newArgs.push(`"${item}"`);
+            else if (item instanceof Array)
+                newArgs.push(`[ ${item.join(", ")} ]`);
             else
                 newArgs.push(item);
         });
