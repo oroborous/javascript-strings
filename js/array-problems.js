@@ -81,5 +81,92 @@ sum3([7, 0, 0]) → 7`,
             {args: [[1,1,1]], ans: 3},
             {args: [[2,7,2]], ans: 11}
         ]
+    },
+    {
+        name: "rotateLeft3",
+        instr: `Given an array of integers length 3, return an array with the elements "rotated left" so {1, 2, 3} yields {2, 3, 1}.
+
+rotateLeft3([1, 2, 3]) → [2, 3, 1]
+rotateLeft3([5, 11, 9]) → [11, 9, 5]
+rotateLeft3([7, 0, 0]) → [0, 0, 7]`,
+        func: {
+            name: "rotateLeft3",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[1,2,3]], ans: [2,3,1]},
+            {args: [[5,11,9]], ans: [11,9,5]},
+            {args: [[7,0,0]], ans: [0,0,7]},
+            {args: [[1,2,1]], ans: [2,1,1]},
+            {args: [[0,0,1]], ans: [0,1,0]}
+        ]
+    },
+    {
+        name: "maxEnd3",
+        instr: `Given an array of integers length 3, figure out which is larger, the first or last element in the array, and set all the other elements to be that value. Return the changed array.
+
+maxEnd3([1, 2, 3]) → [3, 3, 3]
+maxEnd3([11, 5, 9]) → [11, 11, 11]
+maxEnd3([2, 11, 3]) → [3, 3, 3]`,
+        func: {
+            name: "maxEnd3",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[1,2,3]], ans: [3,3,3]},
+            {args: [[11,5,9]], ans: [11,11,11]},
+            {args: [[2,11,3]], ans: [3,3,3]},
+            {args: [[11,3,3]], ans: [11,11,11]},
+            {args: [[2,2,2]], ans: [2,2,2]},
+            {args: [[2,11,2]], ans: [2,2,2]},
+            {args: [[0,0,1]], ans: [1,1,1]}
+        ]
+    },
+    {
+        name: "countEvens",
+        instr: `Return the number of even integers in the given array. Note: the % "mod" operator computes the remainder, e.g. 5 % 2 is 1.
+
+countEvens([2, 1, 2, 3, 4]) → 3
+countEvens([2, 2, 0]) → 3
+countEvens([1, 3, 5]) → 0`,
+        func: {
+            name: "countEvens",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[2,1,2,3,4]], ans: 3},
+            {args: [[2,2,0]], ans: 3},
+            {args: [[1,3,5]], ans: 0},
+            {args: [[]], ans: 0},
+            {args: [[11,9,0,1]], ans: 1},
+            {args: [[2,11,9,0]], ans: 2},
+            {args: [[2]], ans: 1},
+            {args: [[2,5,12]], ans: 2}
+        ]
+    },
+    {
+        name: "bigDiff",
+        instr: `Given an array length 1 or more of integers, return the difference between the largest and smallest values in the array. Note: the built-in Math.min(v1, v2) and Math.max(v1, v2) methods return the smaller or larger of two values.
+
+bigDiff([10, 3, 5, 6]) → 7
+bigDiff([7, 2, 10, 9]) → 8
+bigDiff([2, 10, 7, 2]) → 8`,
+        func: {
+            name: "bigDiff",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[10,3,5,6]], ans: 7},
+            {args: [[7,2,10,9]], ans: 8},
+            {args: [[2,10,7,2]], ans: 8},
+            {args: [[2,10]], ans: 8},
+            {args: [[10,2]], ans: 8},
+            {args: [[10,0]], ans: 10},
+            {args: [[2,3]], ans: 1},
+            {args: [[2,2]], ans: 0},
+            {args: [[5,1,6,1,9,9]], ans: 8},
+            {args: [[7,6,8,5]], ans: 3},
+            {args: [[7,7,6,8,5,5,6]], ans: 3}
+        ]
     }
     ];
