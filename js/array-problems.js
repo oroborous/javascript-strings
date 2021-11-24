@@ -146,7 +146,7 @@ countEvens([1, 3, 5]) → 0`,
     },
     {
         name: "bigDiff",
-        instr: `Given an array length 1 or more of integers, return the difference between the largest and smallest values in the array. Note: the built-in Math.min(v1, v2) and Math.max(v1, v2) methods return the smaller or larger of two values.
+        instr: `Given an array length 1 or more of integers, return the difference between the largest and smallest values in the array. Note: the built-in Math.min() and Math.max() functions return the smaller or larger of a group of values.
 
 bigDiff([10, 3, 5, 6]) → 7
 bigDiff([7, 2, 10, 9]) → 8
