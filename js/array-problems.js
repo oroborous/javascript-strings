@@ -168,5 +168,51 @@ bigDiff([2, 10, 7, 2]) → 8`,
             {args: [[7,6,8,5]], ans: 3},
             {args: [[7,7,6,8,5,5,6]], ans: 3}
         ]
-    }
+    },
+    {
+        name: "fizzArray",
+        instr: `Given a number n, create and return a new integer array of length n, containing the numbers 0, 1, 2, ... n-1. The given n may be 0, in which case just return a length 0 array. You do not need a separate if-statement for the length-0 case; the for-loop should naturally execute 0 times in that case, so it just works.
+
+fizzArray(4) → [0, 1, 2, 3]
+fizzArray(1) → [0]
+fizzArray(10) → [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+fizzArray(0) → []`,
+        func: {
+            name: "fizzArray",
+            args: ["n"]
+        },
+        tests: [
+            {args: [4], ans: [0,1,2,3]},
+            {args: [1], ans: [0]},
+            {args: [10], ans: [0,1,2,3,4,5,6,7,8,9]},
+            {args: [0], ans: []},
+            {args: [2], ans: [0,1]},
+            {args: [7], ans: [0,1,2,3,4,5,6]}
+        ]
+    },
+    {
+        name: "only14",
+        instr: `Given an array of integers, return true if every element is a 1 or a 4.
+
+only14([1, 4, 1, 4]) → true
+only14([1, 4, 2, 4]) → false
+only14([1, 1]) → true`,
+        func: {
+            name: "only14",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[10,3,5,6]], ans: 7},
+            {args: [[7,2,10,9]], ans: 8},
+            {args: [[2,10,7,2]], ans: 8},
+            {args: [[2,10]], ans: 8},
+            {args: [[10,2]], ans: 8},
+            {args: [[10,0]], ans: 10},
+            {args: [[2,3]], ans: 1},
+            {args: [[2,2]], ans: 0},
+            {args: [[5,1,6,1,9,9]], ans: 8},
+            {args: [[7,6,8,5]], ans: 3},
+            {args: [[7,7,6,8,5,5,6]], ans: 3}
+        ]
+    },
     ];
