@@ -202,17 +202,162 @@ only14([1, 1]) → true`,
             args: ["nums"]
         },
         tests: [
-            {args: [[10,3,5,6]], ans: 7},
-            {args: [[7,2,10,9]], ans: 8},
-            {args: [[2,10,7,2]], ans: 8},
-            {args: [[2,10]], ans: 8},
-            {args: [[10,2]], ans: 8},
-            {args: [[10,0]], ans: 10},
-            {args: [[2,3]], ans: 1},
-            {args: [[2,2]], ans: 0},
-            {args: [[5,1,6,1,9,9]], ans: 8},
-            {args: [[7,6,8,5]], ans: 3},
-            {args: [[7,7,6,8,5,5,6]], ans: 3}
+            {args: [[1,4,1,4]], ans: true},
+            {args: [[1,4,2,4]], ans: false},
+            {args: [[1,1]], ans: true},
+            {args: [[4,1]], ans: true},
+            {args: [[2]], ans: false},
+            {args: [[]], ans: true},
+            {args: [[1,4,1,3]], ans: false},
+            {args: [[3,1,3]], ans: false},
+            {args: [[1]], ans: true},
+            {args: [[4]], ans: true},
+            {args: [[3,4]], ans: false},
+            {args: [[1,3,4]], ans: false},
+            {args: [[1,1,1]], ans: true},
+            {args: [[1,1,1,5]], ans: false},
+            {args: [[4,1,4,1]], ans: true}
         ]
     },
+    {
+        name: "isEverywhere",
+        instr: `We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the array, at least one of the pair is that value. Return true if the given value is everywhere in the array.
+
+isEverywhere([1, 2, 1, 3], 1) → true
+isEverywhere([1, 2, 1, 3], 2) → false
+isEverywhere([1, 2, 1, 3, 4], 1) → false`,
+        func: {
+            name: "isEverywhere",
+            args: ["nums", "value"]
+        },
+        tests: [
+            {args: [[1, 2, 1, 3], 1], ans: true},
+            {args: [[1, 2, 1, 3], 2], ans: false},
+            {args: [[1, 2, 1, 3, 4], 1], ans: false},
+            {args: [[2, 1, 2, 1], 1], ans: true},
+            {args: [[2, 1, 2, 1], 2], ans: true},
+            {args: [[2, 1, 2, 3, 1], 2], ans: false},
+            {args: [[3, 1], 3], ans: true},
+            {args: [[3, 1], 2], ans: false},
+            {args: [[3], 1], ans: true},
+            {args: [[], 1], ans: true},
+            {args: [[1, 2, 1, 2, 3, 2, 5], 2], ans: true},
+            {args: [[1, 2, 1, 1, 1, 2], 2], ans: false},
+            {args: [[2, 1, 2, 1, 1, 2], 2], ans: false},
+            {args: [[2, 1, 2, 2, 2, 1, 1, 2], 2], ans: false},
+            {args: [[2, 1, 2, 2, 2, 1, 2, 1], 2], ans: true},
+            {args: [[2, 1, 2, 1, 2], 2], ans: true}
+        ]
+    },
+    {
+        name: "either24",
+        instr: `Given an array of integers, return true if the array contains a 2 next to a 2 or a 4 next to a 4, but not both.
+
+either24([1, 2, 2]) → true
+either24([4, 4, 1]) → trie
+either24([4, 4, 1, 2, 2]) → false`,
+        func: {
+            name: "either24",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[1, 2, 2]], ans: true},
+            {args: [[4, 4, 1]], ans: true},
+            {args: [[4, 4, 1, 2, 2]], ans: false},
+            {args: [[1, 2, 3, 4]], ans: false},
+            {args: [[3, 5, 9]], ans: false},
+            {args: [[1, 2, 3, 4, 4]], ans: true},
+            {args: [[2, 2, 3, 4]], ans: true},
+            {args: [[1, 2, 3, 2, 2, 4]], ans: true},
+            {args: [[1, 2, 3, 2, 2, 4, 4]], ans: false},
+            {args: [[1, 2]], ans: false},
+            {args: [[2, 2]], ans: true},
+            {args: [[4, 4]], ans: true},
+            {args: [[2]], ans: false},
+            {args: [[]], ans: false}
+        ]
+    },
+    {
+        name: "has12",
+        instr: `Given an array of integers, return true if there is a 1 in the array with a 2 somewhere later in the array.
+
+has12([1, 3, 2]) → true
+has12([3, 1, 2]) → true
+has12([3, 1, 4, 5, 2]) → true`,
+        func: {
+            name: "has12",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[1, 3, 2]], ans: true},
+            {args: [[3, 1, 2]], ans: true},
+            {args: [[3, 1, 4, 5, 2]], ans: true},
+            {args: [[3, 1, 4, 5, 6]], ans: false},
+            {args: [[3, 1, 4, 1, 6, 2]], ans: true},
+            {args: [[2, 1, 4, 1, 6, 2]], ans: true},
+            {args: [[2, 1, 4, 1, 6]], ans: false},
+            {args: [[1]], ans: false},
+            {args: [[2, 1, 3]], ans: false},
+            {args: [[2, 1, 3, 2]], ans: true},
+            {args: [[2]], ans: false},
+            {args: [[3, 2]], ans: false},
+            {args: [[3, 1, 3, 2]], ans: true},
+            {args: [[3, 5, 9]], ans: false},
+            {args: [[3, 5, 1]], ans: false},
+            {args: [[3, 2, 1]], ans: false},
+            {args: [[1, 2]], ans: true}
+        ]
+    },
+    {
+        name: "modThree",
+        instr: `Given an array of integers, return true if the array contains either 3 even or 3 odd values all next to each other.
+
+modThree([2, 1, 3, 5]) → true
+modThree([2, 1, 2, 5]) → false
+modThree([2, 4, 2, 5]) → true`,
+        func: {
+            name: "modThree",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[2, 1, 3, 5]], ans: true},
+            {args: [[2, 1, 2, 5]], ans: false},
+            {args: [[2, 4, 2, 5]], ans: true},
+            {args: [[1, 2, 1, 2, 1]], ans: false},
+            {args: [[9, 9, 9]], ans: true},
+            {args: [[1, 2, 1]], ans: false},
+            {args: [[1, 2]], ans: false},
+            {args: [[1]], ans: false},
+            {args: [[]], ans: false},
+            {args: [[9, 7, 2, 9]], ans: false},
+            {args: [[9, 7, 2, 9, 2, 2]], ans: false},
+            {args: [[9, 7, 2, 9, 2, 2, 6]], ans: true}
+        ]
+    },
+    {
+        name: "canBalance",
+        instr: `Given a non-empty array, return true if there is a place to split the array so that the sum of the numbers on one side is equal to the sum of the numbers on the other side.
+
+canBalance([1, 1, 1, 2, 1]) → true
+canBalance([2, 1, 1, 2, 1]) → false
+canBalance([10, 10]) → true
+`,
+        func: {
+            name: "canBalance",
+            args: ["nums"]
+        },
+        tests: [
+            {args: [[1, 1, 1, 2, 1]], ans: true},
+            {args: [[2, 1, 1, 2, 1]], ans: false},
+            {args: [[10, 10]], ans: true},
+            {args: [[10, 0, 1, -1, 10]], ans: true},
+            {args: [[1, 1, 1, 1, 4]], ans: true},
+            {args: [[2, 1, 1, 1, 4]], ans: false},
+            {args: [[2, 3, 4, 1, 2]], ans: false},
+            {args: [[1, 2, 3, 1, 0, 2, 3]], ans: true},
+            {args: [[1, 2, 3, 1, 0, 1, 3]], ans: false},
+            {args: [[1]], ans: false},
+            {args: [[1, 2, 1, 2, 1]], ans: false}
+        ]
+    }
     ];
