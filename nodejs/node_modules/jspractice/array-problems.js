@@ -220,33 +220,23 @@ only14([1, 1]) → true`,
         ]
     },
     {
-        name: "isEverywhere",
-        instr: `We'll say that a value is "everywhere" in an array if for every pair of adjacent elements in the array, at least one of the pair is that value. Return true if the given value is everywhere in the array.
+        name: "swapEnds",
+        instr: `Given an array of integers, swap the first and last elements in the array. Return the modified array. The array length will be at least 1.
 
-isEverywhere([1, 2, 1, 3], 1) → true
-isEverywhere([1, 2, 1, 3], 2) → false
-isEverywhere([1, 2, 1, 3, 4], 1) → false`,
+swapEnds([1, 2, 3, 4]) → [4, 2, 3, 1]
+swapEnds([1, 2, 3]) → [3, 2, 1]
+swapEnds([8, 6, 7, 9, 5]) → [5, 6, 7, 9, 8]`,
         func: {
-            name: "isEverywhere",
-            args: ["nums", "value"]
+            name: "swapEnds",
+            args: ["nums"]
         },
         tests: [
-            {args: [[1, 2, 1, 3], 1], ans: true},
-            {args: [[1, 2, 1, 3], 2], ans: false},
-            {args: [[1, 2, 1, 3, 4], 1], ans: false},
-            {args: [[2, 1, 2, 1], 1], ans: true},
-            {args: [[2, 1, 2, 1], 2], ans: true},
-            {args: [[2, 1, 2, 3, 1], 2], ans: false},
-            {args: [[3, 1], 3], ans: true},
-            {args: [[3, 1], 2], ans: false},
-            {args: [[3], 1], ans: true},
-            {args: [[], 1], ans: true},
-            {args: [[1, 2, 1, 2, 3, 2, 5], 2], ans: true},
-            {args: [[1, 2, 1, 1, 1, 2], 2], ans: false},
-            {args: [[2, 1, 2, 1, 1, 2], 2], ans: false},
-            {args: [[2, 1, 2, 2, 2, 1, 1, 2], 2], ans: false},
-            {args: [[2, 1, 2, 2, 2, 1, 2, 1], 2], ans: true},
-            {args: [[2, 1, 2, 1, 2], 2], ans: true}
+            {args: [[1, 2, 3, 4]], ans: [4, 2, 3, 1]},
+            {args: [[1, 2, 3]], ans: [3, 2, 1]},
+            {args: [[8, 6, 7, 9, 5]], ans: [5, 6, 7, 9, 8]},
+            {args: [[3, 1, 4, 1, 5, 9]], ans: [9, 1, 4, 1, 5, 3]},
+            {args: [[1, 2]], ans: [2, 1]},
+            {args: [[1]], ans: [1]},
         ]
     },
     {
