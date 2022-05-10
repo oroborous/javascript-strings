@@ -120,7 +120,7 @@ $(document).ready(function () {
                 // save now, in case it crashes when trying
                 // to run the function
                 saveAnswer(problem.name);
-                result = func(...item.args);
+                result = func(...copyArgs(item.args));
                 correct = _.isEqual(result, item.ans);
             } catch (err) {
                 result = err;
@@ -134,6 +134,10 @@ $(document).ready(function () {
 
         if (completed)
             problemComplete(problem.name);
+    }
+
+    function copyArgs(args) {
+        return JSON.parse(JSON.stringify(args));
     }
 
     function saveAnswer(name) {
